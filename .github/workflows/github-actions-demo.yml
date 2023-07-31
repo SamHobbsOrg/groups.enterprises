@@ -3,7 +3,7 @@ run-name: Deploying website for Groups Enterprises
 on: [push]
 
 env:
-  DOTNET_VERSION: '7.0.304' # The .NET SDK version to use
+  DOTNET_VERSION: '7.0.306' # The .NET SDK version to use
 
 jobs:
   publish:
@@ -20,15 +20,15 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
-#    - name: Install dependencies
-#      run: dotnet restore
+    - name: Install dependencies
+      run: dotnet restore
 
-#    - name: Build
-#      run: |
-#        cd DotNet.WebApp
-#        dotnet build --configuration Release --no-restore
-#        dotnet publish -c Release -o -r linux-x64 --self-contained false
-#        ls -R
+    - name: Build
+      run: |
+        cd DotNet.WebApp
+        dotnet build --configuration Release --no-restore
+        dotnet publish -c Release -o -r linux-x64 --self-contained false
+        ls -R
                      
 #      - name: Deploy
 #        uses: easingthemes/ssh-deploy@main
