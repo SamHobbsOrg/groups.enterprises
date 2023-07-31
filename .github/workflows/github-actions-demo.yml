@@ -3,28 +3,32 @@ run-name: Deploying website for Groups Enterprises
 on: [push]
 
 env:
-  DOTNET_VERSION: '7.0.7' # The .NET SDK version to use
+  DOTNET_VERSION: '7.0.304' # The .NET SDK version to use
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+
+    - name: Get information
+      run: dotnet --list-sdks
+
     - uses: actions/checkout@v3
+    
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-        include-prerelease: true
 
-    - name: Install dependencies
-      run: dotnet restore
+#    - name: Install dependencies
+#      run: dotnet restore
 
-    - name: Build
-      run: |
-        cd DotNet.WebApp
-        dotnet build --configuration Release --no-restore
-        dotnet publish -c Release -o -r linux-x64 --self-contained false
-        ls -R
+#    - name: Build
+#      run: |
+#        cd DotNet.WebApp
+#        dotnet build --configuration Release --no-restore
+#        dotnet publish -c Release -o -r linux-x64 --self-contained false
+#        ls -R
                      
 #      - name: Deploy
 #        uses: easingthemes/ssh-deploy@main
