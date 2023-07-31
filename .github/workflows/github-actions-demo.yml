@@ -15,19 +15,19 @@ jobs:
     - name: See files
       run: ls -R
     
-#    - name: Setup .NET Core
-#      uses: actions/setup-dotnet@v3
-#      with:
-#        dotnet-version: ${{ env.DOTNET_VERSION }}
-#
-#    - name: Install dependencies
-#      run: dotnet restore
-#
-#    - name: Build
-#      run: |        
-#        dotnet build --configuration Release --no-restore
-#        dotnet publish -c Release -o -r linux-x64 --self-contained false
-#        ls -R
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Install dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: |        
+        dotnet build groups.enterprises.csproj --configuration Release --no-restore
+        dotnet publish -c Release -o -r linux-x64 --self-contained false MyDotNetCoreApp.csproj
+        ls -R
                      
 #      - name: Deploy
 #        uses: easingthemes/ssh-deploy@main
