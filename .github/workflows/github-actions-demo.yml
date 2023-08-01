@@ -36,4 +36,4 @@ jobs:
           SOURCE: "./bin/Release/net7.0/publish/wwwroot/"
           REMOTE_HOST: ${{ secrets.DROPLET_HOST_SECRET}}
           REMOTE_USER: ${{ secrets.DROPLET_USERNAME_SECRET }}
-          TARGET: /var/www/musevation.com
+          TARGET: /var/www/groups.enterprises
