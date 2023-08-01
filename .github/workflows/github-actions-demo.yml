@@ -27,14 +27,13 @@ jobs:
       run: |        
         dotnet build groups.enterprises.csproj --configuration Release --no-restore
         dotnet publish groups.enterprises.csproj -c Release -r linux-x64 --self-contained true
-        ls -R
                      
-#      - name: Deploy
-#        uses: easingthemes/ssh-deploy@main
-#        env:
-#          SSH_PRIVATE_KEY: ${{ secrets.DROPLET_KEY_SECRET }}
-#          ARGS: "-rlgoDzvc -i"
-#          SOURCE: "public/"
-#          REMOTE_HOST: ${{ secrets.DROPLET_HOST_SECRET}}
-#          REMOTE_USER: ${{ secrets.DROPLET_USERNAME_SECRET }}
-#          TARGET: /var/www/musevation.com
+    - name: Deploy
+      uses: easingthemes/ssh-deploy@main
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.DROPLET_KEY_SECRET }}
+          ARGS: "-rlgoDzvc -i"
+          SOURCE: "./bin/Release/net7.0/publish/wwwroot/"
+          REMOTE_HOST: ${{ secrets.DROPLET_HOST_SECRET}}
+          REMOTE_USER: ${{ secrets.DROPLET_USERNAME_SECRET }}
+          TARGET: /var/www/musevation.com
